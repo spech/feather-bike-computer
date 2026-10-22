@@ -1,0 +1,51 @@
+name: Pull request checks
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  conventions:
+    name: Check branch, commits, and PR title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out pull request commits
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Require a ticket branch for changes into develop
+        if: github.event.pull_request.base.ref == 'develop'
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
+        run: |
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|docs|test|refactor|build|chore|hotfix)/[0-9]+-[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
+            echo "Branch must use <type>/<ticket>-<description>, for example feature/123-gps-screen."
+            exit 1
+          fi
+
+      - name: Require Conventional Commit messages
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          while IFS= read -r COMMIT; do
+            SUBJECT="$(git show -s --format=%s "$COMMIT")"
+            if [[ ! "$SUBJECT" =~ ^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([[:alnum:]./_-]+\))?(!)?:\ .+ ]]; then
+              echo "Commit '$SUBJECT' must follow Conventional Commits."
+              exit 1
+            fi
+          done < <(git rev-list --no-merges "$BASE_SHA..$HEAD_SHA")
+
+      - name: Require a Conventional Commit PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([[:alnum:]./_-]+\))?(!)?:\ .+ ]]; then
+            echo "PR title must follow Conventional Commits, for example 'feat(gps): add fix status'."
+            exit 1
+          fi
