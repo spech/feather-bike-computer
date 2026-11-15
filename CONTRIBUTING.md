@@ -8,7 +8,8 @@ beyond the ticket's scope, create or update a ticket and handle it separately.
 
 ## Branch workflow
 
-Use the Git Flow-style workflow:
+The project has a single long-lived branch, `develop`. All work reaches it
+through ticket branches, and releases are cut from it.
 
 1. Start from the latest `develop` branch.
 2. Create one branch for the ticket using
@@ -17,15 +18,14 @@ Use the Git Flow-style workflow:
    hyphens in the description. Supported branch types are `feature`, `fix`,
    `docs`, `test`, `refactor`, `build`, `chore`, and `hotfix`.
 3. Make and test the ticket's changes on that branch. Do not commit directly
-   to `develop` or `main`.
+   to `develop`.
 4. Open a pull request from the ticket branch into `develop`, link the ticket,
    and describe the change and how it was tested.
-5. Merge the branch into `develop` after review and required checks pass.
-6. Keep `main` for release-ready code; changes reach it through the project's
-   release process. Release Please opens a release pull request against
-   `main`, updating `CHANGELOG.md` and the version based on Conventional
-   Commit history. Merge that release pull request to publish the GitHub
-   release.
+5. Merge the branch into `develop` after review and required checks pass,
+   using a squash merge so each ticket lands as one Conventional Commit.
+6. To publish a release, merge the release pull request that Release Please
+   keeps open against `develop` (see
+   [Automated checks and releases](#automated-checks-and-releases)).
 
 If work on `develop` has moved ahead, update the ticket branch from `develop`
 before merging, resolving conflicts on the ticket branch.
@@ -63,15 +63,17 @@ Use `!` after the type or scope for a breaking change, and include a
 ## Automated checks and releases
 
 GitHub Actions checks ticket branch names on pull requests into `develop`,
-each non-merge commit message, and the pull request title. Use a Conventional
-Commit title even when the branch itself is a release branch. The required
+each non-merge commit message, and the pull request title. Release Please's own
+branch (`release-please--…`) is exempt from the branch-name check. The required
 status check is **Check branch, commits, and PR title**.
 
-After changes reach `main`, Release Please creates or updates a release pull
-request with the generated changelog and version. Review and merge it to
-publish a release.
+Each push to `develop` runs Release Please, which creates or updates a release
+pull request against `develop` with the generated `CHANGELOG.md` entry and the
+next version. Only `feat`, `fix`, and breaking changes produce a new version.
+Review and merge the release pull request to tag the version and publish the
+GitHub release.
 
 To enforce the workflow, configure GitHub branch protection or a ruleset for
-`develop` and `main` to require pull requests and the **Check branch, commits,
-and PR title** status check before merging. These repository settings cannot
-be enabled from workflow files.
+`develop` to require pull requests and the **Check branch, commits, and PR
+title** status check before merging. These repository settings cannot be
+enabled from workflow files.

@@ -23,6 +23,11 @@ jobs:
         env:
           BRANCH_NAME: ${{ github.head_ref }}
         run: |
+          # Release Please opens its release pull request from its own branch.
+          if [[ "$BRANCH_NAME" == release-please--* ]]; then
+            echo "Release Please branch; skipping the ticket branch check."
+            exit 0
+          fi
           if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|docs|test|refactor|build|chore|hotfix)/[0-9]+-[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
             echo "Branch must use <type>/<ticket>-<description>, for example feature/123-gps-screen."
             exit 1
