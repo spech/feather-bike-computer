@@ -26,3 +26,7 @@ The firmware will be developed in two stages: first in CircuitPython to bring up
 ## Project status
 
 This repository is at an early stage. The directory structure establishes the planned areas of work; firmware, hardware documentation, and build instructions are still to be developed. Check the [roadmap](docs/roadmap.md) for planned work as it takes shape.
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
