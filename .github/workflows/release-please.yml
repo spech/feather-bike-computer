@@ -3,7 +3,7 @@ name: Release Please
 on:
   push:
     branches:
-      - main
+      - develop
   workflow_dispatch:
 
 permissions:
@@ -17,4 +17,4 @@ jobs:
       - name: Create or update release pull request
         uses: googleapis/release-please-action@v4
         with:
-          target-branch: main
+          target-branch: develop
