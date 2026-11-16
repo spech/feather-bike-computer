@@ -12,6 +12,12 @@ The firmware will be developed in two stages: first in CircuitPython to bring up
 - Make on-device navigation possible with the ANO rotary control.
 - Develop and validate the design in CircuitPython before moving to Rust.
 
+## Hardware
+
+![Wiring diagram: the FeatherS3[D] with the eInk FeatherWing stacked on top, the LiPo battery, the ANO encoder on I2C1, and the BMP581 and GPS chained on I2C2](docs/images/wiring-diagram.svg)
+
+See the [parts list](docs/parts-list.md) and [wiring notes](docs/wiring.md) for details.
+
 ## Repository layout
 
 - `firmware/circuitpython/` — initial CircuitPython firmware, organized into core, hardware, and UI areas.

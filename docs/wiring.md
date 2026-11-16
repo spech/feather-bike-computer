@@ -8,20 +8,10 @@ bring-up.
 
 ## Overview
 
-```text
-                    ┌──────────────────────────────┐
-  2.9" eInk  ═══════╡ FeatherWing headers (SPI)    │
-  FeatherWing       │                              │
-                    │  FeatherS3[D]                │
-  2000 mAh LiPo ────┤ JST PH battery connector     │
-                    │                              │
-                    │ I2C1 STEMMA QT (always on) ──┼── ANO I2C adapter (0x49)
-                    │   + MAX17048 fuel gauge 0x36 │
-                    │                              │
-                    │ I2C2 vertical STEMMA QT ─────┼── BMP581 (0x47) ── Mini GPS PA1010D (0x10)
-                    │   (LDO2, off in deep sleep)  │
-                    └──────────────────────────────┘
-```
+![Wiring diagram: the FeatherS3[D] with the eInk FeatherWing stacked on top, the LiPo battery, the ANO encoder on I2C1, and the BMP581 and GPS chained on I2C2](images/wiring-diagram.svg)
+
+The diagram's source is [images/wiring-diagram.svg](images/wiring-diagram.svg),
+a hand-written SVG file; edit it as text when the wiring changes.
 
 ## Display: 2.9" grayscale eInk FeatherWing (SPI)
 
