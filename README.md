@@ -16,7 +16,7 @@ The firmware will be developed in two stages: first in CircuitPython to bring up
 
 ![Wiring diagram: the FeatherS3[D] with the eInk FeatherWing stacked on top, the LiPo battery, the ANO encoder on I2C1, and the BMP581 and GPS chained on I2C2](docs/images/wiring-diagram.svg)
 
-See the [parts list](docs/parts-list.md) and [wiring notes](docs/wiring.md) for details.
+See the [parts list](docs/parts-list.md) and [wiring notes](docs/wiring.md) for details, and the [screen designs](docs/ui-screens.md) for what the display will show.
 
 ## Repository layout
 

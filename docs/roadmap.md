@@ -36,8 +36,8 @@ one:
 ## 3. [Ride features](https://github.com/spech/feather-bike-computer/milestone/3)
 
 CircuitPython ride firmware: speed, distance, and time from GPS; altitude and
-elevation gain from the BMP581; screen layouts for the 296 x 128 display;
-navigation with the ANO encoder; and a battery indicator.
+elevation gain from the BMP581; the [screens](ui-screens.md) on the 128 × 296
+portrait display; navigation with the ANO encoder; and a battery indicator.
 
 ## 4. [Power management](https://github.com/spech/feather-bike-computer/milestone/4)
 
