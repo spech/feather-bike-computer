@@ -9,7 +9,7 @@ Components selected for the Feather Bike Computer. See
 | Barometric sensor | Adafruit BMP581 breakout, STEMMA QT | I2C | Selected |
 | E-paper display | Adafruit 2.9" grayscale eInk FeatherWing (product 4777) | SPI | Selected |
 | GPS | Adafruit Mini GPS PA1010D, STEMMA QT | I2C (UART also available) | Selected |
-| Navigation control | Adafruit ANO rotary navigation encoder + ANO to I2C STEMMA QT adapter (seesaw) | I2C | Selected |
+| Navigation control | Adafruit ANO rotary navigation encoder on I2C STEMMA QT adapter, pre-soldered (product 6310, seesaw) | I2C | Selected |
 | Battery | LiPo, 2000 mAh, single cell (3.7 V nominal) | JST PH | Selected |
 
 ## Microcontroller: Unexpected Maker FeatherS3[D]
@@ -112,7 +112,7 @@ sleep, which matters for battery life.
 
 | Item | Quantity | Purpose | Status |
 | --- | --- | --- | --- |
-| STEMMA QT / Qwiic JST SH 4-pin cables | 3 | Connect the BMP581, GPS, and ANO adapter (see [wiring.md](wiring.md)) | On hand |
+| STEMMA QT / Qwiic JST SH 4-pin cables, 50 mm | 3 | Connect the BMP581, GPS, and ANO adapter (see [wiring.md](wiring.md)); the short length keeps those boards close to the Feather | On hand |
 | Feather stacking headers | 1 set | Stack the display on the Feather | On hand |
 | Hook-up wire | — | ANO adapter INT and, optionally, display BUSY to GPIOs | To get |
 | Power switch | 1 | Hard power-off; see [Open questions](#open-questions) | To get |
