@@ -28,6 +28,14 @@ The FeatherWing's pins are fixed by its layout. On the FeatherS3[D] they map to:
 | SD CS | `D5` | GPIO33 | Trace can be cut if the microSD slot is not used |
 | RESET | Feather `RST` | — | Shared with the Feather reset button |
 | BUSY | Not connected | **Proposed:** GPIO6 (`A4`) | Optional: solder the BUSY pad to a GPIO so firmware knows when a refresh ends instead of waiting a fixed time |
+| Button A | `D11` | GPIO7 | Push button on the FeatherWing |
+| Button B | `D12` | GPIO10 | Push button on the FeatherWing |
+| Button C | `D13` | GPIO11 | Push button on the FeatherWing |
+
+The button pins come from Adafruit's guide, which says they are D11–D13 "on
+many Feathers, but may vary"; confirm them during bring-up. The buttons could
+serve as extra controls, or be left unused (the pins then stay taken unless
+the buttons' traces are cut).
 
 The display is powered from the Feather's main 3.3 V rail (LDO1).
 
@@ -73,9 +81,20 @@ pull-up, so enable the internal pull-up on GPIO5 (harmless either way).
 ## Free pins
 
 After the assignments above, these pins remain free: GPIO17 (`A0`), GPIO18
-(`A1`), GPIO14 (`A2`), GPIO12 (`A3`), GPIO7 (`D11`), GPIO10 (`D12`), GPIO11
-(`D13`), GPIO42 (`D2`), and the UART pins GPIO43 (`TX`) and GPIO44 (`RX`).
-Avoid GPIO0 (`D4`): it is a boot strapping pin.
+(`A1`), GPIO14 (`A2`), GPIO12 (`A3`), GPIO42 (`D2`), and the UART pins GPIO43
+(`TX`) and GPIO44 (`RX`). Avoid GPIO0 (`D4`): it is a boot strapping pin.
+
+### Checking GPIO5 for the ANO interrupt
+
+- **Not used by the display:** the FeatherWing uses SPI, `D5`, `D6`, `D9`,
+  `D10`, and `D11`–`D13` (buttons), and nothing on the analog pins.
+- **Not used on the FeatherS3[D]:** `A5` is GPIO5 with no on-board function.
+- **Not a strapping pin** (the ESP32-S3's are GPIO0, 3, 45, and 46), so a signal
+  on it cannot change how the board boots.
+- **RTC-capable** (GPIO0–21), so it can wake the board from deep sleep.
+- **Physical access:** with the display stacked, `A5` sits under the
+  FeatherWing. Solder the wire to the `A5` pin where it comes through the
+  header, or to the FeatherWing's matching `A5` hole.
 
 ## Before powering up
 
