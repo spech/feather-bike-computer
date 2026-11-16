@@ -61,6 +61,7 @@
   <text x="875" y="236" class="t" text-anchor="middle">on I2C adapter (seesaw)</text>
   <text x="875" y="254" class="s" text-anchor="middle">Adafruit 6310</text>
   <text x="875" y="274" class="lbl" text-anchor="middle" style="fill:#2563eb">I2C1 · 0x49</text>
+  <text x="964" y="264" class="lbl" text-anchor="end" style="fill:#16a34a">INT ▸</text>
   <path d="M700 306 L740 306 L740 238 L780 238" class="i2c1"/>
 
   <!-- BMP581 on I2C2 -->
@@ -79,7 +80,7 @@
 
   <!-- ANO interrupt wire (to solder) -->
   <path d="M970 260 L988 260 L988 442 L600 442 L600 420" class="int"/>
-  <text x="790" y="436" class="s" text-anchor="middle" style="fill:#16a34a">INT wire</text>
+  <text x="790" y="436" class="s" text-anchor="middle" style="fill:#16a34a">INT pad → GPIO5 (active low)</text>
 
   <!-- Legend -->
   <text x="40" y="472" class="h">Legend</text>
@@ -92,6 +93,6 @@
   <line x1="40" y1="574" x2="84" y2="574" class="pwr"/>
   <text x="96" y="578" class="t">Battery, JST PH connector</text>
   <line x1="40" y1="600" x2="84" y2="600" class="int"/>
-  <text x="96" y="604" class="t">ANO interrupt wire, to solder (proposed GPIO5)</text>
+  <text x="96" y="604" class="t">Wire to solder: ANO adapter INT pad → FeatherS3[D] GPIO5 (A5), proposed</text>
   <text x="960" y="620" class="s" text-anchor="end">Bus split and GPIO5 are proposed; see docs/wiring.md</text>
 </svg>

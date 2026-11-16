@@ -58,11 +58,17 @@ which the ANO adapter recommends.
 
 | Signal | GPIO | Notes |
 | --- | --- | --- |
-| ANO adapter INT | **Proposed:** GPIO5 (`A5`) | Hook-up wire from the adapter's INT pin. Must be an RTC-capable GPIO (GPIO0–21 on the ESP32-S3) to wake the board from deep sleep |
+| ANO adapter INT | **Proposed:** GPIO5 (`A5`) | Hook-up wire from the pad labeled **INT** on the adapter, in the row of breakout pads (VIN, GND, SCL, SDA, INT) along its bottom edge, to the Feather's `A5` pin. No separate ground wire is needed: the STEMMA QT cable already shares ground. Must be an RTC-capable GPIO (GPIO0–21 on the ESP32-S3) to wake the board from deep sleep |
 | Fuel gauge alert | GPIO2 (`FG_INT`) | On board |
 | LDO2 enable | GPIO39 (`LDO2`) | On board; also powers the RGB LED |
 | USB power detect | GPIO34 (`VBUS_SENSE`) | On board |
 | Ambient light | GPIO4 (`AMB`) | On board, analog |
+
+The ANO adapter's INT output goes **low** when the wheel turns or a button is
+pressed, once the firmware enables those interrupts on the adapter. A red LED
+on the back of the adapter lights when an interrupt is detected, which helps
+check the wire during bring-up. Adafruit does not state whether INT needs a
+pull-up, so enable the internal pull-up on GPIO5 (harmless either way).
 
 ## Free pins
 
