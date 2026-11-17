@@ -103,5 +103,5 @@
   <text x="96" y="578" class="t">Battery, JST PH connector, through the inline power switch</text>
   <line x1="40" y1="600" x2="84" y2="600" class="int"/>
   <text x="96" y="604" class="t">Wire to solder: ANO adapter INT pad → FeatherS3[D] GPIO5 (A5), proposed</text>
-  <text x="960" y="620" class="s" text-anchor="end">Bus split and GPIO5 are proposed; see docs/wiring.md</text>
+  <text x="960" y="620" class="s" text-anchor="end">Bus split confirmed by I2C scan; GPIO5 is proposed; see docs/wiring.md</text>
 </svg>
