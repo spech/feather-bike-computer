@@ -61,3 +61,21 @@ of the sky and leave the ANO encoder usable.
 
 Rust firmware for the ESP32-S3 with feature parity with the CircuitPython
 firmware, including direct control of SSD1680 partial refresh.
+
+## 8. [Carrier PCB](https://github.com/spech/feather-bike-computer/milestone/8) (optional)
+
+A carrier PCB: a simple board that holds the existing modules and connects them
+with traces instead of cables. The FeatherS3[D] sits in headers with the
+display FeatherWing stacked on top, the BMP581 and GPS breakouts mount on the
+board, the ANO encoder can be soldered directly without its adapter, and the
+power switch and the ANO interrupt line to GPIO5 become part of the board.
+Mounting holes fix it in the enclosure against vibration.
+
+The carrier adds almost no electronics of its own: the ESP32-S3, charger, fuel
+gauge, and GPS stay on the proven modules. A full custom board that replaces
+those modules is out of scope.
+
+**Decision pending:** whether to build it. Decide after the first enclosure
+prototype, based on how much space the STEMMA QT cables take and how reliable
+the hand-soldered interrupt wire is. Until then, design the enclosure so a
+carrier board could fit later.
