@@ -115,7 +115,8 @@ sleep, which matters for battery life.
 | STEMMA QT / Qwiic JST SH 4-pin cables, 50 mm | 3 | Connect the BMP581, GPS, and ANO adapter (see [wiring.md](wiring.md)); the short length keeps those boards close to the Feather | On hand |
 | Feather stacking headers | 1 set | Stack the display on the Feather | On hand |
 | Hook-up wire | — | ANO adapter INT and, optionally, display BUSY to GPIOs | To get |
-| Power switch | 1 | Hard power-off; see [Open questions](#open-questions) | To get |
+| Power switch (prototyping) | 1 | Hard power-off on the bench: [Adafruit JST PH 2-pin extension cable with on/off switch](https://www.adafruit.com/product/3064), plugged between the LiPo and the Feather; too bulky for the final enclosure | To get |
+| Power switch (final) | 1 | Hard power-off for storage; not yet chosen, see [Open questions](#open-questions) | To choose |
 | microSD card | 1 (optional) | Ride logs and GPX files in the display's card slot | — |
 | USB-C cable | 1 | Power, charging, and flashing firmware | — |
 | Enclosure and handlebar mount | 1 | To be designed in `hardware/` | To design |
@@ -126,8 +127,26 @@ sleep, which matters for battery life.
   rate-limited. Options to evaluate: refresh ride data less often (for example
   every few minutes), use the panel in monochrome mode with partial refresh if
   the driver supports it, or defer fast updates to the Rust firmware.
-- **Power switch.** Decide whether to rely on deep sleep (woken by the ANO
-  encoder) or add a hard power switch, for example on the Feather `EN` pin.
+- **Power switch.** Decide how the device turns off. Options under
+  consideration:
+  - *Soft off with deep sleep*: a long press on an eInk FeatherWing button or
+    the ANO center button puts the board into deep sleep, and the same button
+    wakes it. The FeatherWing buttons sit on GPIOs that can wake the ESP32-S3.
+    No extra part is needed, but sleep drains the battery slowly and a hung
+    firmware cannot be turned off this way.
+  - *Hard off with a switch inline on the battery + wire*: cuts all drain for
+    storage, but the battery cannot charge while the switch is off.
+  - *Both*: deep sleep for everyday use, plus a hard switch for storage.
+
+  A switch on an `EN` pin does not seem to apply to this board: the FeatherS3
+  documents no pin that turns off the main regulator, only IO39, which controls
+  LDO2 from software. Confirm on the board's pinout card.
+
+  If a hard switch is used in the final build, it should be small (about 10 mm
+  or less), sealed to IP67, and hard to bump while riding. Candidates: a sealed
+  sub-miniature slide or rocker switch (for example from C&K or E-Switch), or an
+  unsealed micro slide switch hidden behind a port cover or battery hatch.
+  Choose it together with the enclosure design.
 - **GPS power during sleep.** Putting the GPS on the LDO2 rail saves power but
   forces a cold start after each wake; see [wiring.md](wiring.md).
 - **Weatherproofing.** The enclosure must protect the electronics from rain
