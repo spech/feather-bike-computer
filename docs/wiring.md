@@ -44,11 +44,13 @@ The display is powered from the Feather's main 3.3 V rail (LDO1).
 | Device | Address | Bus | Connection | Status |
 | --- | --- | --- | --- | --- |
 | MAX17048 fuel gauge | `0x36` | I2C1 (`board.I2C()`) | On the FeatherS3[D] | Fixed |
-| ANO I2C adapter (seesaw) | `0x49` | I2C1 (`board.STEMMA_I2C()`) | STEMMA QT cable | **Proposed** |
-| BMP581 | `0x47` | I2C2 (`board.I2C2()`) | STEMMA QT cable from the vertical connector | **Proposed** |
-| Mini GPS PA1010D | `0x10` | I2C2 (`board.I2C2()`) | STEMMA QT cable chained from the BMP581 | **Proposed** |
+| ANO I2C adapter (seesaw) | `0x49` | I2C1 (`board.STEMMA_I2C()`) | STEMMA QT cable | Confirmed |
+| BMP581 | `0x47` | I2C2 (`board.I2C2()`) | STEMMA QT cable from the vertical connector | Confirmed |
+| Mini GPS PA1010D | `0x10` | I2C2 (`board.I2C2()`) | STEMMA QT cable chained from the BMP581 | Confirmed |
 
-No two devices on the same bus share an address. Run both buses at 400 kHz,
+Confirmed entries were checked with an I2C scan of both buses during bring-up
+on 2026-11-17: each device answered at its address on the bus listed. No two
+devices on the same bus share an address. Run both buses at 400 kHz,
 which the ANO adapter recommends.
 
 ### Why this split
