@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640" role="img" aria-labelledby="title desc">
   <title id="title">Feather Bike Computer wiring diagram</title>
-  <desc id="desc">The FeatherS3[D] with the 2.9 inch eInk FeatherWing stacked on its headers (SPI), a 2000 mAh LiPo on the JST PH connector, the ANO encoder adapter on the always-on I2C1 STEMMA QT port, and the BMP581 then the Mini GPS PA1010D chained on the I2C2 STEMMA QT port powered by LDO2. The ANO interrupt pin is wired to GPIO5.</desc>
+  <desc id="desc">The FeatherS3[D] with the 2.9 inch eInk FeatherWing stacked on its headers (SPI), a 2000 mAh LiPo on the JST PH connector through an inline power switch (the Adafruit 3064 switch cable while prototyping; the final switch is not chosen yet), the ANO encoder adapter on the always-on I2C1 STEMMA QT port, and the BMP581 then the Mini GPS PA1010D chained on the I2C2 STEMMA QT port powered by LDO2. The ANO interrupt pin is wired to GPIO5.</desc>
   <style>
     text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: #1f2937; }
     .title { font-size: 22px; font-weight: 700; }
@@ -53,7 +53,16 @@
   <text x="135" y="346" class="h" text-anchor="middle">LiPo battery</text>
   <text x="135" y="366" class="t" text-anchor="middle">2000 mAh · 3.7 V</text>
   <text x="135" y="386" class="s" text-anchor="middle">55 × 35 × 10 mm</text>
-  <line x1="230" y1="362" x2="300" y2="362" class="pwr"/>
+  <line x1="230" y1="362" x2="250" y2="362" class="pwr"/>
+  <!-- Inline power switch on the battery lead -->
+  <circle cx="253" cy="362" r="3.5" fill="#ffffff" stroke="#dc2626" stroke-width="2"/>
+  <line x1="256" y1="360" x2="276" y2="346" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="279" cy="362" r="3.5" fill="#ffffff" stroke="#dc2626" stroke-width="2"/>
+  <line x1="283" y1="362" x2="300" y2="362" class="pwr"/>
+  <text x="265" y="336" class="lbl" text-anchor="middle" style="fill:#dc2626">switch</text>
+  <text x="40" y="424" class="s">Inline power switch: Adafruit 3064</text>
+  <text x="40" y="438" class="s">switch cable for prototyping; final</text>
+  <text x="40" y="452" class="s">switch not chosen yet (parts-list.md)</text>
 
   <!-- ANO encoder adapter on I2C1 -->
   <rect x="780" y="190" width="190" height="96" rx="10" class="box"/>
@@ -91,7 +100,7 @@
   <line x1="40" y1="548" x2="84" y2="548" class="spi"/>
   <text x="96" y="552" class="t">SPI through the stacked Feather headers</text>
   <line x1="40" y1="574" x2="84" y2="574" class="pwr"/>
-  <text x="96" y="578" class="t">Battery, JST PH connector</text>
+  <text x="96" y="578" class="t">Battery, JST PH connector, through the inline power switch</text>
   <line x1="40" y1="600" x2="84" y2="600" class="int"/>
   <text x="96" y="604" class="t">Wire to solder: ANO adapter INT pad → FeatherS3[D] GPIO5 (A5), proposed</text>
   <text x="960" y="620" class="s" text-anchor="end">Bus split and GPIO5 are proposed; see docs/wiring.md</text>
