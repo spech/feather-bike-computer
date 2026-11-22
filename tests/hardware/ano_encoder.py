@@ -1,4 +1,4 @@
-"""Read the ANO wheel and its five buttons through the seesaw adapter (I2C1).
+"""Read the ANO wheel and its five buttons through the seesaw adapter (I2C1, 400 kHz).
 
 Interactive: for 45 s, turn the wheel and press each button; every change is
 printed. Check that the button names match the physical directions.
@@ -6,6 +6,7 @@ printed. Check that the button names match the physical directions.
 import time
 
 import board
+import busio
 from adafruit_seesaw import digitalio, rotaryio, seesaw
 
 DURATION = 45
@@ -13,7 +14,8 @@ BUTTONS = {1: "SELECT (center)", 2: "UP", 3: "LEFT", 4: "DOWN", 5: "RIGHT"}
 
 
 def main():
-    ss = seesaw.Seesaw(board.I2C(), 0x49)
+    i2c = busio.I2C(board.SCL, board.SDA, frequency=400000)  # rate the adapter recommends
+    ss = seesaw.Seesaw(i2c, 0x49)
     print("seesaw product id:", (ss.get_version() >> 16) & 0xFFFF, "(ANO adapter is 5740)")
     buttons = {}
     for pin in BUTTONS:
