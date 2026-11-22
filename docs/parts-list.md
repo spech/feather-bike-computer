@@ -59,11 +59,14 @@ sleep, which matters for battery life.
   - `colstart=0`: the driver's default of 8 leaves a ~2.5 mm band of random
     pixels along one long edge of this panel.
 
-  Grayscale mode is not tested yet; see the display refresh experiment
-  ([#2](https://github.com/spech/feather-bike-computer/issues/2)).
-- **Refresh limits:** a full grayscale refresh takes several seconds, and
-  Adafruit recommends refreshing no more often than every 3 minutes. Live ride
-  data (speed, time) needs faster updates; see [Open questions](#open-questions).
+  - Grayscale: `grayscale=True, custom_lut=adafruit_ssd1680.FPC_A005_LUT`. The
+    panel's User ID (register `0x2E`) reads `0x00`, which selects this
+    waveform (see `tests/hardware/display_grayscale.py`).
+- **Refresh speed** (measured, [#2](https://github.com/spech/feather-bike-computer/issues/2)):
+  full refresh ~1–2 s in monochrome and ~1.5 s in grayscale; partial refresh
+  in monochrome is fast enough for one update per second, without flashing,
+  using direct SSD1680 commands (`tests/hardware/display_partial.py`). The
+  chosen update strategy is in the [roadmap](roadmap.md).
 
 ## Barometric sensor: Adafruit BMP581
 
@@ -132,10 +135,9 @@ sleep, which matters for battery life.
 
 ## Open questions
 
-- **Display updates during a ride.** Full grayscale refreshes are slow and
-  rate-limited. Options to evaluate: refresh ride data less often (for example
-  every few minutes), use the panel in monochrome mode with partial refresh if
-  the driver supports it, or defer fast updates to the Rust firmware.
+- **Display updates during a ride.** Decided after the refresh experiment:
+  partial refresh in monochrome for live values, full refreshes for other
+  screens; see the [roadmap](roadmap.md).
 - **Power switch.** Decide how the device turns off. Options under
   consideration:
   - *Soft off with deep sleep*: a long press on an eInk FeatherWing button or

@@ -31,3 +31,4 @@ the board with `circup`.
 | `ldo2_power_cycle.py` | Switch LDO2 off and on; I2C2 devices recover | `adafruit_bmp5xx`, `adafruit_gps` |
 | `display_test.py` | Portrait test screen on the e-paper display | `adafruit_ssd1680`, `adafruit_display_text`, `adafruit_bmp5xx` |
 | `display_partial.py` | Partial refresh: counts 1 to 10, one per second, without flashing | No libraries (talks to the SSD1680 directly) |
+| `display_grayscale.py` | 4-level grayscale screen, with a countdown to time the refresh | `adafruit_ssd1680`, `adafruit_display_text` |
