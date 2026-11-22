@@ -20,18 +20,30 @@ build the device: parts list, wiring, roadmap, and measurements.
 Prove every part works on the FeatherS3[D] with CircuitPython, and settle the
 open hardware questions.
 
-The first and highest-risk task is the display refresh experiment
-([#2](https://github.com/spech/feather-bike-computer/issues/2)): a full
-grayscale refresh on the 2.9" e-paper display takes several seconds and should
-not repeat more than every 3 minutes, which is too slow for live ride data.
+The first and highest-risk task was the display refresh experiment
+([#2](https://github.com/spech/feather-bike-computer/issues/2)), measured on
+2026-11-22 (durations by eye, BUSY not connected):
 
-**Decision pending: display update strategy.** Based on the experiment, choose
-one:
+| Mode | Refresh | Flash | Notes |
+| --- | --- | --- | --- |
+| Monochrome, full | ~1–2 s | Whole screen | At most one every ~2 s through displayio |
+| Monochrome, partial | Fits one update per second | None | Direct SSD1680 commands; ~10 ms of SPI data per update; no ghosting over 10 updates |
+| 4-level grayscale, full | ~1.5 s | Whole screen | Driver waveform `FPC_A005_LUT`; four distinct levels |
 
-1. Partial refresh in CircuitPython for live values (speed, time, distance).
-2. Infrequent full refreshes, with screens designed around slow updates.
-3. Accept slow updates in CircuitPython, and implement partial refresh in the
-   Rust firmware.
+**Decision: display update strategy.** Of the three options considered
+(partial refresh in CircuitPython, infrequent full refreshes, or partial
+refresh deferred to Rust), the firmware combines the first two:
+
+- **Live ride screen:** monochrome, with partial refreshes for the values that
+  change (speed, time, distance), sent as direct SSD1680 commands. A full
+  refresh every few minutes clears any slow ghosting.
+- **Menus, summaries, and other screens that rarely change:** full refreshes
+  through displayio, in grayscale where it helps readability.
+- **Rust is not needed for display speed:** the panel's waveform sets the
+  refresh time, whatever the language.
+
+Still to confirm: exact durations once BUSY is wired to GPIO6, and ghosting
+over a full ride.
 
 ## 3. [Ride features](https://github.com/spech/feather-bike-computer/milestone/3)
 

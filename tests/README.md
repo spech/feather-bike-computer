@@ -29,3 +29,4 @@ the board with `circup`.
 | `gps.py` | Raw NMEA output and time to first fix | `adafruit_gps`; a clear view of the sky |
 | `display_test.py` | Portrait test screen on the e-paper display | `adafruit_ssd1680`, `adafruit_display_text`, `adafruit_bmp5xx` |
 | `display_partial.py` | Partial refresh: counts 1 to 10, one per second, without flashing | No libraries (talks to the SSD1680 directly) |
+| `display_grayscale.py` | 4-level grayscale screen, with a countdown to time the refresh | `adafruit_ssd1680`, `adafruit_display_text` |
