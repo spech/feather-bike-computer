@@ -27,5 +27,6 @@ the board with `circup`.
 | `ano_encoder.py` | Wheel and five buttons, interactive for 45 s | `adafruit_seesaw` |
 | `fuel_gauge.py` | MAX17048 readings and USB power detection | `adafruit_max1704x`; a battery for meaningful values |
 | `gps.py` | Raw NMEA output and time to first fix | `adafruit_gps`; a clear view of the sky |
+| `ldo2_power_cycle.py` | Switch LDO2 off and on; I2C2 devices recover | `adafruit_bmp5xx`, `adafruit_gps` |
 | `display_test.py` | Portrait test screen on the e-paper display | `adafruit_ssd1680`, `adafruit_display_text`, `adafruit_bmp5xx` |
 | `display_partial.py` | Partial refresh: counts 1 to 10, one per second, without flashing | No libraries (talks to the SSD1680 directly) |
