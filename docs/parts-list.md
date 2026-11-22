@@ -43,15 +43,24 @@ sleep, which matters for battery life.
 
 - 296 x 128 pixels, 4 gray levels (white, light gray, dark gray, black), or
   monochrome.
-- SSD1680 controller on current boards; older boards use the IL0373. Check
-  the chip marking or revision before choosing a driver.
-- FeatherWing form factor: stacks directly on the FeatherS3[D] and uses SPI.
+- SSD1680 controller on current boards; older boards use the IL0373. **The
+  project's board has the SSD1680** (confirmed during bring-up).
+- FeatherWing form factor with female headers: the FeatherS3[D] plugs into the
+  back of the display board, and the display uses SPI.
 - Onboard SRAM frame buffer and a microSD card slot, both on the same SPI bus.
 - BUSY is not connected to a Feather pin (it is on a solder pad), and RESET is
   shared with the Feather's reset.
-- CircuitPython driver: Adafruit's learn guide has a separate example for
-  each controller (IL0373 and SSD1680). Confirm which driver and grayscale
-  mode work during hardware bring-up.
+- CircuitPython driver: `adafruit_ssd1680`. Monochrome works with these
+  settings (see `tests/hardware/display_test.py`):
+  - `width=128, height=296`: pass the final portrait size.
+  - `rotation=180` (or `0` if mounted the other way up), set in the
+    constructor. Changing `display.rotation` afterwards breaks the RAM offsets
+    and leaves part of the screen undrawn.
+  - `colstart=0`: the driver's default of 8 leaves a ~2.5 mm band of random
+    pixels along one long edge of this panel.
+
+  Grayscale mode is not tested yet; see the display refresh experiment
+  ([#2](https://github.com/spech/feather-bike-computer/issues/2)).
 - **Refresh limits:** a full grayscale refresh takes several seconds, and
   Adafruit recommends refreshing no more often than every 3 minutes. Live ride
   data (speed, time) needs faster updates; see [Open questions](#open-questions).
