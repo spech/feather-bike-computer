@@ -24,7 +24,8 @@ the board with `circup`.
 | `header_bridges.py` | Solder bridges between header signal pins | Feather alone, nothing on the header |
 | `i2c_scan.py` | Devices on both I2C buses | All I2C modules connected |
 | `bmp581.py` | Pressure, temperature, altitude, and altitude noise | `adafruit_bmp5xx` |
-| `ano_encoder.py` | Wheel and five buttons, interactive for 45 s | `adafruit_seesaw` |
+| `ano_encoder.py` | Wheel and five buttons at 400 kHz, interactive for 45 s | `adafruit_seesaw` |
+| `ano_directions.py` | Guided: button names match their physical positions; clockwise counts up | `adafruit_seesaw` |
 | `fuel_gauge.py` | MAX17048 readings and USB power detection | `adafruit_max1704x`; a battery for meaningful values |
 | `gps.py` | Raw NMEA output and time to first fix | `adafruit_gps`; a clear view of the sky |
 | `ldo2_power_cycle.py` | Switch LDO2 off and on; I2C2 devices recover | `adafruit_bmp5xx`, `adafruit_gps` |
