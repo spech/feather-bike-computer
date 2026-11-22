@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 672" width="1000" height="672" role="img" aria-labelledby="title desc">
   <title id="title">Feather Bike Computer wiring diagram</title>
-  <desc id="desc">The FeatherS3[D] with the 2.9 inch eInk FeatherWing stacked on its headers (SPI), a 2000 mAh LiPo on the JST PH connector through an inline power switch (the Adafruit 3064 switch cable while prototyping; the final switch is not chosen yet), the ANO encoder adapter on the always-on I2C1 STEMMA QT port, and the BMP581 then the Mini GPS PA1010D chained on the I2C2 STEMMA QT port powered by LDO2. The ANO interrupt pin is wired to GPIO5.</desc>
+  <desc id="desc">The FeatherS3[D] with the 2.9 inch eInk FeatherWing stacked on its headers (SPI), a 2000 mAh LiPo on the JST PH connector through an inline power switch (the Adafruit 3064 switch cable while prototyping; the final switch is not chosen yet), the ANO encoder adapter on the always-on I2C1 STEMMA QT port, and the BMP581 then the Mini GPS PA1010D chained on the I2C2 STEMMA QT port powered by LDO2. The ANO interrupt pin is wired to GPIO5, and the display BUSY pad to GPIO6 (both proposed).</desc>
   <style>
     text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: #1f2937; }
     .title { font-size: 22px; font-weight: 700; }
@@ -15,10 +15,11 @@
     .i2c2 { stroke: #d97706; stroke-width: 5; fill: none; stroke-linecap: round; }
     .spi { stroke: #7c3aed; stroke-width: 5; fill: none; }
     .pwr { stroke: #dc2626; stroke-width: 5; fill: none; stroke-linecap: round; }
+    .busy { stroke: #0891b2; stroke-width: 3; fill: none; stroke-dasharray: 8 6; stroke-linecap: round; }
     .int { stroke: #16a34a; stroke-width: 3; fill: none; stroke-dasharray: 8 6; stroke-linecap: round; }
   </style>
 
-  <rect x="0" y="0" width="1000" height="640" rx="16" fill="#ffffff" stroke="#e5e7eb"/>
+  <rect x="0" y="0" width="1000" height="672" rx="16" fill="#ffffff" stroke="#e5e7eb"/>
   <text x="40" y="48" class="title">Feather Bike Computer — wiring</text>
 
   <!-- Display FeatherWing (stacked on top of the Feather) -->
@@ -32,6 +33,11 @@
   <line x1="440" y1="172" x2="440" y2="214" class="spi"/>
   <line x1="560" y1="172" x2="560" y2="214" class="spi"/>
   <text x="500" y="198" class="lbl" text-anchor="middle" style="fill:#7c3aed">Feather headers</text>
+
+  <!-- Display BUSY wire (to solder, proposed) -->
+  <line x1="320" y1="172" x2="320" y2="214" class="busy"/>
+  <text x="310" y="190" class="lbl" text-anchor="end" style="fill:#0891b2">BUSY pad → GPIO6 (A4)</text>
+  <text x="310" y="205" class="s" text-anchor="end">wire to solder, proposed</text>
 
   <!-- FeatherS3[D] -->
   <rect x="300" y="214" width="400" height="206" rx="12" class="main"/>
@@ -103,5 +109,7 @@
   <text x="96" y="578" class="t">Battery, JST PH connector, through the inline power switch</text>
   <line x1="40" y1="600" x2="84" y2="600" class="int"/>
   <text x="96" y="604" class="t">Wire to solder: ANO adapter INT pad → FeatherS3[D] GPIO5 (A5), proposed</text>
-  <text x="960" y="620" class="s" text-anchor="end">Bus split confirmed by I2C scan; GPIO5 is proposed; see docs/wiring.md</text>
+  <line x1="40" y1="626" x2="84" y2="626" class="busy"/>
+  <text x="96" y="630" class="t">Wire to solder: display BUSY pad → FeatherS3[D] GPIO6 (A4), proposed</text>
+  <text x="960" y="652" class="s" text-anchor="end">Bus split confirmed by I2C scan; GPIO5 and GPIO6 are proposed; see docs/wiring.md</text>
 </svg>

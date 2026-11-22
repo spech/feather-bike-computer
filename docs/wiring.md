@@ -27,7 +27,7 @@ The FeatherWing's pins are fixed by its layout. On the FeatherS3[D] they map to:
 | SRAM CS | `D6` | GPIO38 | Trace can be cut if the SRAM is not used |
 | SD CS | `D5` | GPIO33 | Trace can be cut if the microSD slot is not used |
 | RESET | Feather `RST` | — | Shared with the Feather reset button |
-| BUSY | Not connected | **Proposed:** GPIO6 (`A4`) | Optional: solder the BUSY pad to a GPIO so firmware knows when a refresh ends instead of waiting a fixed time |
+| BUSY | Not connected | **Proposed:** GPIO6 (`A4`) | Recommended: solder a wire from the BUSY pad to the FeatherWing's `A4` hole so firmware knows when a refresh ends instead of waiting a fixed time. Partial refresh works without it ([#2](https://github.com/spech/feather-bike-computer/issues/2)), but needs it for exact timing and to put the display to sleep promptly |
 | Button A | `D11` | GPIO7 | Push button on the FeatherWing |
 | Button B | `D12` | GPIO10 | Push button on the FeatherWing |
 | Button C | `D13` | GPIO11 | Push button on the FeatherWing |
